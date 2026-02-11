@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <title>luv fern tee sud 💖</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(180deg, #ff9acb, #ff7eb3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Segoe UI", sans-serif;
+      overflow: hidden;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(10px);
+      padding: 40px 70px 30px;
+      border-radius: 24px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      animation: pop 1.2s ease;
+    }
+
+    .title {
+      font-size: 42px;
+      font-weight: 800;
+      color: #ffffff;
+      text-shadow: 0 6px 20px rgba(0,0,0,0.25);
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: #fff;
+      opacity: 0.9;
+      margin-bottom: 18px;
+    }
+
+    .music-btn {
+      background: linear-gradient(135deg, #ff4d6d, #ff7eb3);
+      border: none;
+      color: white;
+      padding: 10px 22px;
+      border-radius: 999px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+    }
+
+    .music-btn:hover {
+      transform: scale(1.08);
+      filter: brightness(1.05);
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      font-size: 16px;
+      animation: float 8s linear forwards;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-110vh) scale(1.4); opacity: 0; }
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.7); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="title">💘 luv fern tee sud 💘</div>
+    <div class="subtitle">อยากเจอที่สุด &lt;3 💖</div>
+    <button class="music-btn" onclick="playMusic()">รู้มือ</button>
+  </div>
+
+  <!-- ใส่ไฟล์เพลง .mp3/.wav ของเธอตรงนี้ -->
+  <audio id="bgm" src="c:\Users\phatd\Downloads\iluvujayjay - .mp3" preload="auto"></audio>
+
+  <script>
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = ["💖","💘","💝","💗","💕","❤️"][Math.floor(Math.random() * 6)];
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = 12 + Math.random() * 18 + "px";
+      heart.style.animationDuration = 5 + Math.random() * 5 + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 9000);
+    }
+
+    setInterval(createHeart, 200);
+
+    function playMusic() {
+      const audio = document.getElementById("bgm");
+      audio.volume = 0.6;   // ปรับความดังได้ (0.0 - 1.0)
+
+      if (audio.readyState >= 1) {
+        audio.currentTime = 91; // ⏱️ เริ่มที่ 1:31
+        audio.play();
+      } else {
+        audio.addEventListener("loadedmetadata", () => {
+          audio.currentTime = 91; // ⏱️ เริ่มที่ 1:31
+          audio.play();
+        }, { once: true });
+      }
+    }
+  </script>
+
+</body>
+</html>
